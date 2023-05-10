@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _WEATHER_CONTROLLER_H_
-#define _WEATHER_CONTROLLER_H_
+#ifndef WEATHER_CONTROLLER_H
+#define WEATHER_CONTROLLER_H
 
 #define CURL_STATICLIB
 

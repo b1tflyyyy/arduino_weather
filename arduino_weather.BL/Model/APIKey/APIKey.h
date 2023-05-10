@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _API_KEY_H_
-#define _API_KEY_H_
+#ifndef API_KEY_H
+#define API_KEY_H
 
 #include <iostream>
 #include <string>

@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _WEATHER_H_
-#define _WEATHER_H_
+#ifndef WEATHER_H
+#define WEATHER_H
 
 #include <string>
 

@@ -33,13 +33,13 @@ Weather WeatherController::get_weather(const std::string& city)
 
         if (code == CURLE_OK)
         {
-            float temperature = response.get<float>("main.temp");
-            float humidity = response.get<float>("main.humidity");
+            int temperature = std::ceil(response.get<float>("main.temp"));
+            int humidity = response.get<int>("main.humidity");
 
             Weather current_weather(temperature, humidity, city);
             return current_weather;
         }
     }
 
-    return Weather(0.0f, 0.0f, " ");
+    return Weather(0, 0, " ");
 }

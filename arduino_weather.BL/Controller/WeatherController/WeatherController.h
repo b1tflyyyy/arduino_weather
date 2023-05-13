@@ -20,6 +20,7 @@
 
 #include <string>
 #include <sstream>
+#include <cmath>
 
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/property_tree/ptree.hpp>

@@ -9,19 +9,21 @@ class Weather
 public:
     Weather() = default;
 
-    Weather(float temperature, float humidity, const std::string& city);
+    Weather(int temperature, int humidity, const std::string& city);
 
     ~Weather() = default;
 
-    float get_temperature() const;
+    int get_temperature() const;
 
-    float get_humidity() const;
+    int get_humidity() const;
 
     std::string get_city() const;
 
+    bool is_empty() const;
+
 private:
-    float m_temperature;
-    float m_humidity;
+    int m_temperature;
+    int m_humidity;
     std::string m_city;
 };
 

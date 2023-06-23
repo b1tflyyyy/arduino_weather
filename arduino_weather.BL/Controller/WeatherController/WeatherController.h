@@ -4,7 +4,7 @@
 
 #define CURL_STATICLIB
 
-#include "../../../x64_curl/curl.h"
+#include <curl.h>
 
 #ifdef _DEBUG
 #pragma comment (lib, "../x64_curl/libcurl_a_debug.lib")
@@ -22,8 +22,7 @@
 #include <sstream>
 #include <cmath>
 
-#include <boost/property_tree/json_parser.hpp>
-#include <boost/property_tree/ptree.hpp>
+#include <json/json.hpp>
 
 #include "../arduino_weather.BL/Model/Weather/Weather.h"
 #include "../arduino_weather.BL/Model/APIKey/APIKey.h"

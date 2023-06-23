@@ -5,12 +5,12 @@ size_t WeatherController::m_handle_response(char* ptr,
                                             size_t nmemb,
                                             void* data)
 {
-    boost::property_tree::ptree* result = static_cast<boost::property_tree::ptree*>(data);
+    auto result = static_cast<nlohmann::json*>(data);
 
     std::stringstream ss;
     ss.write(ptr, size * nmemb);
 
-    boost::property_tree::read_json(ss, *result);
+    *result = nlohmann::json::parse(ss);
     return size * nmemb;
 }
 
@@ -25,7 +25,7 @@ Weather WeatherController::get_weather(const std::string& city)
         curl_easy_setopt(m_curl, CURLOPT_URL, m_weather_url.c_str());
         curl_easy_setopt(m_curl, CURLOPT_WRITEFUNCTION, &WeatherController::m_handle_response);
 
-        boost::property_tree::ptree response;
+        nlohmann::json response;
         curl_easy_setopt(m_curl, CURLOPT_WRITEDATA, &response);
 
         CURLcode code = curl_easy_perform(m_curl);
@@ -33,8 +33,8 @@ Weather WeatherController::get_weather(const std::string& city)
 
         if (code == CURLE_OK)
         {
-            int temperature = std::ceil(response.get<float>("main.temp"));
-            int humidity = response.get<int>("main.humidity");
+            int temperature = std::ceil(static_cast<double>(response["main"]["temp"]));
+            int humidity = response["main"]["humidity"];
 
             Weather current_weather(temperature, humidity, city);
             return current_weather;

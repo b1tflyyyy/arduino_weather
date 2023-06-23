@@ -2,7 +2,6 @@
 #ifndef API_KEY_H
 #define API_KEY_H
 
-#include <iostream>
 #include <string>
 
 class APIKey
@@ -12,9 +11,9 @@ public:
 
     ~APIKey() = default;
 
-    std::string get_api_key();
+    static std::string get_api_key();
 };
 
 
-#endif // _API_KEY_H_
+#endif // API_KEY_H
 

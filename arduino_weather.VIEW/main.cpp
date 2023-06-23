@@ -24,7 +24,7 @@ int main()
     try
     {
         Weather weather;
-        WeatherController weatherController;
+        WeatherController weatherController(CITY);
 
         boost::asio::io_service io;
         boost::asio::serial_port serial_port(io, PORT);
@@ -44,7 +44,7 @@ int main()
         {
             using namespace std::chrono_literals;
 
-            weather = weatherController.get_weather(CITY);
+            weather = weatherController.get_weather();
             if (weather.is_empty())
             {
                 std::cout << "===============ERROR===============\n";

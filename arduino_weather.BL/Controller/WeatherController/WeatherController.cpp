@@ -1,5 +1,12 @@
 #include "WeatherController.h"
 
+WeatherController::WeatherController(const std::string& city)
+{
+    m_curl = nullptr;
+    m_city = city;
+    m_weather_url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + ",ua&units=metric&appid=" + APIKey::get_api_key();
+}
+
 size_t WeatherController::m_handle_response(char* ptr,
                                             size_t size,
                                             size_t nmemb,
@@ -14,10 +21,8 @@ size_t WeatherController::m_handle_response(char* ptr,
     return size * nmemb;
 }
 
-Weather WeatherController::get_weather(const std::string& city)
+Weather WeatherController::get_weather()
 {
-    m_weather_url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + ",ua&units=metric&appid=" + m_api_key.get_api_key();
-
     m_curl = curl_easy_init();
 
     if (m_curl)
@@ -36,7 +41,7 @@ Weather WeatherController::get_weather(const std::string& city)
             int temperature = std::ceil(static_cast<double>(response["main"]["temp"]));
             int humidity = response["main"]["humidity"];
 
-            Weather current_weather(temperature, humidity, city);
+            Weather current_weather(temperature, humidity, m_city);
             return current_weather;
         }
     }

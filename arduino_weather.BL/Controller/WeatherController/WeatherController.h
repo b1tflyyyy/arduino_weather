@@ -31,11 +31,11 @@
 class WeatherController
 {
 public:
-    WeatherController() = default;
+    WeatherController(const std::string& city);
 
     ~WeatherController() = default;
 
-    Weather get_weather(const std::string& city);
+    Weather get_weather();
 
 private:
     static size_t m_handle_response(char* ptr,
@@ -44,8 +44,8 @@ private:
                                     void* data);
 
     CURL* m_curl;
-    APIKey m_api_key;
     std::string m_weather_url;
+    std::string m_city;
 };
 
 
